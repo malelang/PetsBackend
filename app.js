@@ -1,5 +1,6 @@
 var express = require('express');
 var path = require('path');
+//var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongodb = require('mongodb').MongoClient;
@@ -7,6 +8,7 @@ var cors = require('cors');
 
 var users = require('./routes/users');
 var pets = require('./routes/pets');
+
 
 var app = express();
 app.use(cors());
@@ -23,12 +25,14 @@ app.use((req,res,next)=>{
     next(); 
 });
 
+//app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 app.use('/api/pets', pets);
 app.use('/api/users', users);
+
 
 
 // catch 404 and forward to error handler
