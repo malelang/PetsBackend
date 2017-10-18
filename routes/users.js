@@ -48,8 +48,14 @@ router.post("/",(req,res,next)=>{
 router.post("/login",(req,res,next)=>{
     let body=req.body;
     req.collection.findOne({username:body.username, password: body.password}).then(result=>{
+        if(result){
             res.send({success:true});
             console.log("Validé al usuario")
+        }else{
+            res.send({success:false});
+            console.log("Validé al usuario")
+        }
+            
     }).catch(err=>{
         res.send({success:false});
         console.log("No validé al usuario")
