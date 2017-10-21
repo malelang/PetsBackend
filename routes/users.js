@@ -22,10 +22,8 @@ router.get("/:username",(req,res,next)=>{
     .then(result=>{
         if(result){
             res.send(result);
-            console.log("Encontre al usuario y lo cargué")
         }else{
             res.status(404).send({err:"Usuario no encontrado"});
-            console.log("Validé al usuario pero no lo encontre en la bd")
         }
     })
     .catch(err=>{
@@ -36,7 +34,7 @@ router.get("/:username",(req,res,next)=>{
 
 
 router.post("/",(req,res,next)=>{
-    let body=req.body; // asi obtengo la info que viaja a traves del método post
+    let body=req.body;
     req.collection.insertOne(body)
     .then(result=>{
         res.send({success: true})
@@ -50,15 +48,12 @@ router.post("/login",(req,res,next)=>{
     req.collection.findOne({username:body.username, password: body.password}).then(result=>{
         if(result){
             res.send({success:true});
-            console.log("Validé al usuario")
         }else{
             res.send({success:false});
-            console.log("Validé al usuario")
         }
             
     }).catch(err=>{
         res.send({success:false});
-        console.log("No validé al usuario")
     })
 })
 
