@@ -8,6 +8,7 @@ var cors = require('cors');
 
 var users = require('./routes/users');
 var pets = require('./routes/pets');
+var vets = require('./routes/vets');
 
 
 var app = express();
@@ -32,7 +33,7 @@ app.use(cookieParser());
 
 app.use('/api/pets', pets);
 app.use('/api/users', users);
-
+app.use('/api/vets',vets);
 
 
 // catch 404 and forward to error handler
