@@ -8,6 +8,7 @@ router.use((req, res, next) => {
 })
 
 router.get("/", (req, res, next) => {
+    console.log("Llega al index de users"); 
     req.collection.find().toArray().then(data => {
         res.send(data);
     }).catch(err => {
@@ -34,6 +35,7 @@ router.get("/:username", (req, res, next) => {
 
 
 router.post("/", (req, res, next) => {
+    console.log("Llega a registrar usuario con los valores: "+req.body.nombre);
     let body = req.body;
     req.collection.insertOne(body)
         .then(result => {
@@ -45,6 +47,7 @@ router.post("/", (req, res, next) => {
 
 router.post("/login", (req, res, next) => {
     let body = req.body;
+    console.log("me llego la request del usuario "+body.username+" y el pass: "+body.password)
     req.collection.findOne({ username: body.username, password: body.password }).then(result => {
         if (result) {
             res.send({ success: true });

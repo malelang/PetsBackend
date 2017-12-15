@@ -32,6 +32,7 @@ router.get("/:id", (req, res, next) => {
 });
 
 router.post("/", (req, res, next) => {
+    console.log("Llega a registrar mascota con los valores: "+req.body);
     let body = req.body;
     req.collection.insertOne(body)
         .then(result => {

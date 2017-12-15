@@ -26,7 +26,7 @@ router.get("/:id", (req, res, next) => {
             }
         })
         .catch(err => {
-            res.status(500).send({ err: "Error al leer libros " })
+            res.status(500).send({ err: "Error al leer veterinarios " })
         });
 });
 
